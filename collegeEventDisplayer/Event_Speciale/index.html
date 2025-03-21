@@ -1,0 +1,115 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hackathon Events</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="logo-container">
+                    <img src="images/logo.jpeg" alt="FRCRCE Logo" class="logo-img">
+                    <div class="logo">FR CRCE</div>
+                </div>
+                <div class="nav-links">
+                    <a href="events.html" class="nav-link">Events</a>
+                    <a href="#registration" class="nav-link">Register</a>
+                </div>
+            </nav>
+            <div class="hero">
+                <h1>Upcoming Hackathons</h1>
+                <p class="subtitle">Join the innovation. Create the future.</p>
+            </div>
+        </header>
+
+        <main>
+            <section id="events">
+                <h2>Featured Events</h2>
+                <div class="carousel-container">
+                    <button class="carousel-button prev" onclick="moveCarousel(-1)">❮</button>
+                    <div class="carousel">
+                        <div class="events-container">
+                            <div class="event" onclick="showEventDetails(this)">
+                                <div class="event-date">OCT 10</div>
+                                <h3>AI Innovation </h3>
+                                <p class="event-location">📍 Tech Innovation Center</p>
+                                <p class="event-description">Build cutting-edge AI solutions! Join us for 24 hours of machine learning, neural networks, and breakthrough innovations in artificial intelligence.</p>
+                            </div>
+
+                            <div class="event" onclick="showEventDetails(this)">
+                                <div class="event-date">NOV 5</div>
+                                <h3>GreenTech Challenge</h3>
+                                <p class="event-location">📍 Sustainability Hub</p>
+                                <p class="event-description">Create sustainable solutions for a better tomorrow. Focus on renewable energy, waste reduction, and eco-friendly technologies.</p>
+                            </div>
+
+                            <div class="event" onclick="showEventDetails(this)">
+                                <div class="event-date">FEB 7</div>
+                                <h3>FinTech Revolution</h3>
+                                <p class="event-location">📍 Digital Finance Center</p>
+                                <p class="event-description">Revolutionize the future of finance! Develop innovative solutions in blockchain, digital payments, and decentralized banking.</p>
+                            </div>
+
+                            <div class="event" onclick="showEventDetails(this)">
+                                <div class="event-date">MAR 13</div>
+                                <h3>HealthTech Heroes</h3>
+                                <p class="event-location">📍 Medical Innovation Lab</p>
+                                <p class="event-description">Transform healthcare through technology. Build solutions for remote care, medical diagnostics, and patient monitoring systems.</p>
+                            </div>
+
+                            <div class="event" onclick="showEventDetails(this)">
+                                <div class="event-date">MAR 20</div>
+                                <h3>GameDev Showdown</h3>
+                                <p class="event-location">📍 Creative Arts Center</p>
+                                <p class="event-description">Level up your game development skills! Create engaging games using cutting-edge engines, AR/VR, and interactive storytelling.</p>
+                            </div>
+
+                            <div class="event" onclick="showEventDetails(this)">
+                                <div class="event-date">MAR 27</div>
+                                <h3>CyberSecurity Sprint</h3>
+                                <p class="event-location">📍 Security Operations Center</p>
+                                <p class="event-description">Protect the digital frontier! Develop innovative solutions for threat detection, encryption, and secure communications.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-button next" onclick="moveCarousel(1)">❯</button>
+                </div>
+                <div class="carousel-dots"></div>
+            </section>
+
+            <section id="event-details">
+                <h2>Event Details</h2>
+                <div id="selected-event" class="event-details">
+                </div>
+            </section>
+
+            <section id="registration">
+                <h2>Registration Form</h2>
+                <div class="form-container">
+                    <form id="registration-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="event">Selected Event</label>
+                            <input type="text" id="event" name="event" readonly>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Complete Registration</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+        <script src="carousel.js"></script>
+        <script src="scripts.js"></script>
+    </body>
+    </html>
