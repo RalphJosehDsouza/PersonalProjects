@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Price Prediction</h1>
+        <div class="tabs">
+            <button class="tab-button active" data-company="TCS">TCS</button>
+            <button class="tab-button" data-company="ADEL">ADEL</button>
+            <button class="tab-button" data-company="BRLC">BRLC</button>
+        </div>
+        {% for company in ['TCS', 'ADEL', 'BRLC'] %}
+        <div class="company-data" id="{{ company }}" {% if not loop.first %}style="display: none;"{% endif %}>
+            {% if company in errors %}
+            <div class="card error">
+                <h2>Error</h2>
+                <p>{{ errors[company] }}</p>
+            </div>
+            {% elif company in results %}
+            <div class="card result">
+                <div class="result-item">
+                    <h2>Last Closing Price</h2>
+                    <p>₹{{ results[company].last_price }}</p>
+                    <h2>Date</h2>
+                    <p>{{ results[company].last_date }}</p>
+                </div>
+                <div class="result-item">
+                    <h2>Predicted Close Price</h2>
+                    <p>₹{{ results[company].next_day_price }}</p>
+                    <h2>Next Trading Day</h2>
+                </div>
+                <div class="result-item">
+                    <h2>Mean Squared Error</h2>
+                    <p>{{ results[company].mse }}</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="data:image/png;base64,{{ results[company].plot_url }}" alt="{{ company }}: Actual vs Predicted Close Price" class="plot">
+            </div>
+            <div class="card">
+                <img src="data:image/png;base64,{{ results[company].regression_plot_url }}" alt="{{ company }}: Linear Regression Model on Close Price" class="plot">
+            </div>
+            {% else %}
+            <div class="card error">
+                <h2>Error</h2>
+                <p>No data available for {{ company }}</p>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab-button');
+            const companyData = document.querySelectorAll('.company-data');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const company = this.getAttribute('data-company');
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    companyData.forEach(data => {
+                        if (data.id === company) {
+                            data.style.display = 'block';
+                        } else {
+                            data.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
